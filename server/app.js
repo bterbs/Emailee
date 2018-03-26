@@ -11,16 +11,17 @@ require('./services/passport');
 mongoose.connect(keys.mongoURI);
 const app = express();
 
-// tell express to use cookie-session and pass private key and maxAge to cookie
+// Enable cookies inside of our application
 app.use(
   cookieSession({
-    maxAge: 30 * 24 * 60 * 60 * 1000;
-    keys: [keys.cookieKey];
+    maxAge: 30 * 24 * 60 * 60 * 1000,
+    keys: [keys.cookieKey]
   })
 );
 
-app.use(passport.initialize())
-app.use(passport.session())
+// tell passport to use cookies to handle authenication
+app.use(passport.initialize());
+app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 
