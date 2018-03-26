@@ -18,10 +18,9 @@ passport.use(
           // we have a record with the given profile id
         } else {
           // we do not have a record with the id; create a new record in db
+          new User({ googleID: profile.id }).save();
         }
       });
-
-      new User({ googleID: profile.id }).save();
     }
   )
 );
