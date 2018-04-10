@@ -7,5 +7,16 @@ module.exports = app => {
       scope: ['profile', 'email']
     })
   );
-  app.get('/auth/google/callback', passport.authenticate('google'));
+
+  app.get(
+    '/auth/google/callback',
+    passport.authenticate('google', {
+      scope: 'https://www.googleapis.com/auth/plus.login'
+    })
+  );
+
+  app.get('/api/current_user', (req, res) => {
+    console.log('the req.user is ', req.user);
+    res.send(req.user);
+  });
 };
