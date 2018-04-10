@@ -15,6 +15,12 @@ module.exports = app => {
     })
   );
 
+  app.get('/api/logout', (req, res) => {
+    req.logout();
+    console.log('logged out! the user is ', req.user);
+    res.send(req.user);
+  });
+
   app.get('/api/current_user', (req, res) => {
     console.log('the req.user is ', req.user);
     res.send(req.user);
