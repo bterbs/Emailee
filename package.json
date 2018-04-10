@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start:dev": "nodemon server/app.js",
-    "start": "node server/app.js"
+    "start": "server/app.js"
   },
   "author": "",
   "license": "ISC",
