@@ -1,8 +1,9 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
+const bodyParser = require('body-parser');
 const passport = require('passport');
 const keys = require('./config/keys');
+const mongoose = require('mongoose');
 
 require('./models/user');
 require('./services/passport');
@@ -10,6 +11,12 @@ require('./services/passport');
 // connect to the mongo db then instantiate express
 mongoose.connect(keys.mongoURI);
 const app = express();
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+
+// parse application/json
+app.use(bodyParser.json())
 
 // Enable cookies inside of our application
 app.use(
