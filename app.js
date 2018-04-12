@@ -3,11 +3,11 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
-const keys = require('./config/keys');
+const keys = require('./server/config/keys');
 
 
-require('./models/user');
-require('./services/passport');
+require('./server/models/user');
+require('./server/services/passport');
 
 // connect to the mongo db then instantiate express
 mongoose.connect(keys.mongoURI);
@@ -31,8 +31,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./routes/authRoutes')(app);
+require('./server/routes/authRoutes')(app);
 
-const port = process.env.PORT || 5000;
-app.listen(port);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);
 console.log('Server is running on port 5000');
